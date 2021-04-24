@@ -31,7 +31,10 @@ function SideBar() {
         <button
           data-testid="side-menu-item-logout"
           type="button"
-          onClick={ () => localStorage.clear() }
+          onClick={ () => {
+            localStorage.clear();
+            history.push('/login');
+          } }
         >
           Sair
         </button>

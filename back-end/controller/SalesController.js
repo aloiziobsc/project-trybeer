@@ -64,7 +64,7 @@ SalesController.post('/checkout', verifyLogin, async (req, res) => {
     quantity: elem.total,
   }));
 
-  res.status(OK).json({ saleId: id });
+  return res.status(OK).json({ saleId: id });
 });
 
 // Update
@@ -73,7 +73,7 @@ SalesController.put('/status/:id', async (req, res) => {
   const { status } = req.body;
 
   await Sale.update({ status }, { where: { id } });  
-  res.status(OK).json({ Message: 'Updated status' });
+  return res.status(OK).end();
 });
 
 module.exports = SalesController;

@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard';
 import ShowCart from '../components/ShowCart';
 import { getProducts } from '../api/index';
 import { tokenExists } from '../services/index';
+import loading from '../img/loading.gif';
 import '../css/Products.css';
 
 function Products() {
@@ -20,16 +21,17 @@ function Products() {
   return (
     <div className="products-wrapper">
       <ControllerHeader />
-      <section className="product-list">
-        { products && products
-          .map((prod, index) => (<ProductCard
-            key={ index }
-            product={ prod }
-            setTotal={ setCartTotal }
-            index={ index }
-          />
-          ))}
-      </section>
+      { !products ? <img src={ loading } alt="loading" />
+        : <section className="product-list">
+          { products && products
+            .map((prod, index) => (<ProductCard
+              key={ index }
+              product={ prod }
+              setTotal={ setCartTotal }
+              index={ index }
+            />
+            ))}
+        </section> }
       <ShowCart total={ cartTotal } />
     </div>
   );

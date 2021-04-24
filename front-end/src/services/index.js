@@ -1,16 +1,16 @@
 import { checkout, profile, login, register, updateName } from '../api';
 
-const verifyEmailAndPassword = (email, password, setActiveBtn) => {
+const verifyEmailAndPassword = async (email, password, setActiveBtn) => {
   const isEmailValid = email.match(/\S+@\S+\.\S+/);
   const isPasswordValid = password.match(/^[0-9a-zA-Z]{6,50}$/);
 
   if (isEmailValid && isPasswordValid) {
-    setActiveBtn(true);
+    await setActiveBtn(true);
   } else setActiveBtn(false);
 };
 
-const handleSubmit = (history, user) => {
-  login(user)
+const handleSubmit = async (history, user) => {
+  await login(user)
     .then(async (response) => {
       const isAdmin = response.data.role === 'administrator';
       localStorage.setItem('token', response.data.token);
@@ -20,26 +20,26 @@ const handleSubmit = (history, user) => {
     });
 };
 
-const verifyRegister = (user, setActiveBtn) => {
+const verifyRegister = async (user, setActiveBtn) => {
   const isEmailValid = user.email.match(/\S+@\S+\.\S+/);
   const isPasswordValid = user.password.match(/^[0-9a-zA-Z]{6,50}$/);
   const isNameValid = user.name.match(/^[a-zA-Z ]{12,50}$/);
 
   if (isEmailValid && isPasswordValid && isNameValid) {
-    setActiveBtn(true);
+    await setActiveBtn(true);
   } else setActiveBtn(false);
 };
 
-const handleSubmitRegister = (user, checked, setUser, history) => {
+const handleSubmitRegister = async (user, checked, setUser, history) => {
   if (checked) {
     setUser({ ...user, role: 'administrator' });
-    register({ ...user, role: 'administrator' })
+    await register({ ...user, role: 'administrator' })
       .then((result) => {
         if (result) history.push('admin/orders');
       });
   } else {
     setUser({ ...user, role: 'client' });
-    register({ ...user, role: 'client' })
+    await register({ ...user, role: 'client' })
       .then((result) => {
         localStorage.setItem('token', result.data.token); // todo: verificar se este token está correto
         if (result) history.push('products');
@@ -54,15 +54,15 @@ const handleCheckbox = (checked, setChecked, setUser, user) => {
   setChecked(!checked);
 };
 
-const redirectMenuBar = (history, payloadUrl) => {
-  history.push(payloadUrl);
+const redirectMenuBar = async (history, payloadUrl) => {
+  await history.push(payloadUrl);
 };
 
-const handleUpdate = (name, setShowMessage) => {
+const handleUpdate = async (name, setShowMessage) => {
   const userFromStorage = JSON.parse(localStorage.getItem('user'));
   const { id } = userFromStorage;
 
-  updateName(name, id, setShowMessage)
+  await updateName(name, id, setShowMessage)
     .then(setShowMessage(true));
 };
 

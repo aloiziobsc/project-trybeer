@@ -39,5 +39,5 @@ export default function ShowCart(props) {
 }
 
 ShowCart.propTypes = {
-  total: PropTypes.number.isRequired,
+  total: PropTypes.number,
 };

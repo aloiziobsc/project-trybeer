@@ -67,7 +67,7 @@ async function checkout(params) {
 }
 
 async function getOrders(setOrders) {
-  const axios = buildAxiosHandler();
+  const axios = await buildAxiosHandler();
   const token = localStorage.getItem('token');
   axios.get('/sales', {
     headers: {

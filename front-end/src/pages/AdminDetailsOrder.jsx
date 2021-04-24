@@ -5,6 +5,7 @@ import ProductCardAdmin from '../components/ProductCardAdmin';
 import { changeStatus } from '../api/index';
 import '../css/AdminOrders.css';
 import '../css/General.css';
+import loading from '../img/loading.gif';
 
 function AdminDetailsOrder() {
   const { saleDetail, setSaleDetail } = useContext(BeerContext);
@@ -24,14 +25,14 @@ function AdminDetailsOrder() {
         <div>
           <h1>Detalhes do pedido</h1>
         </div>
-        { !saleDetail ? <p>Loading</p> : (
+        { !saleDetail ? <img src={ loading } alt="loading" /> : (
           <div className="admin-order-details">
             <div className="larger-text">
               <span data-testid="order-number">{`Pedido ${sale.id} - `}</span>
               <span data-testid="order-status">{`${sale.status}`}</span>
             </div>
             <section className="orders-list">
-              { products && products
+              { !products ? <img src={ loading } alt="loading" /> : products
                 .map((prod, index) => (<ProductCardAdmin
                   key={ index }
                   product={ prod }

@@ -17,7 +17,7 @@ const UserController = new Router();
 // Get All Users
 UserController.get('/', async (_req, res) => {
   const users = await User.findAll();
-  res.status(OK).json({ Users: users });
+  return res.status(OK).json({ Users: users });
 });
 
 // Create New User
@@ -44,7 +44,7 @@ UserController.get('/profile', verifyLogin, async (req, res) => {
     console.log('Usuario decodificado', dec);
     if (!decoded.data[0]) return res.status(OK).json(decoded.data);
     
-    res.status(OK).json(dec);
+    return res.status(OK).json(dec);
   });
 });
 
@@ -56,7 +56,7 @@ UserController.put('/:id', verifyId, verifyLogin, async (req, res) => {
   await User.update({ name }, { where: { id } });
   const user = await User.findByPk(id);
   const token = jwt.sign({ data: user }, SECRET, jwtConfig);
-  res.status(OK).json({ token });
+  return res.status(OK).json({ token });
 });
 
 module.exports = UserController;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SideBar from './SideBar';
 import Header from './Header';
 import '../../css/ControllerHeader.css';
+import loading from '../../img/loading.gif';
 
 function ControllerHeader() {
   const [viewMenu, setViewMenu] = useState(false);

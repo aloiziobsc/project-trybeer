@@ -1,3 +1,16 @@
+# Projeto em grupo realizado com o seguinte time:
+<div align="center">
+
+<a href="https://github.com/aloiziobsc">Aloízio Borges</a>
+
+<a href="https://github.com/HCaetano">Havyner Caetano</a>
+
+<a href="https://github.com/ShiranaiAho">Alexandre Fogaça</a>
+
+<a href="https://github.com/ralexandre11">Ricardo Ribeiro</a>
+
+</div>
+
 # Boas vindas ao repositório do projeto TryBeer v2!
 
 Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
